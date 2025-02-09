@@ -1,4 +1,4 @@
-const API_URL = 'https://walrus-app-2-u9tl4.ondigitalocean.app/api/definitions';
+const API_URL = 'https://walrus-app-2-u9tl4.ondigitalocean.app';
 
 function isValidInput(str) {
     return /^[a-zA-Z\s]+$/.test(str);
