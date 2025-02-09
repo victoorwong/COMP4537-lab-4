@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary - Add Words</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav>
+        <a href="store.html">Add Words</a> |
+        <a href="search.html">Search Words</a>
+    </nav>
+    <h1>Add New Word to Dictionary</h1>
+    <div class="input-group">
+        <label for="word">Word:</label>
+        <input type="text" id="word" required>
+    </div>
+    <div class="input-group">
+        <label for="definition">Definition:</label>
+        <textarea id="definition" rows="4" required></textarea>
+    </div>
+    <button onclick="submitWord()">Submit</button>
+    <div id="feedback"></div>
+
+    <script src="/js/strings.js"></script>
+    <script src="/js/store.js"></script>
+</body>
+</html>

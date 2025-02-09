@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary - Search Words</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav>
+        <a href="store.html">Add Words</a> |
+        <a href="search.html">Search Words</a>
+    </nav>
+    <h1>Search Dictionary</h1>
+    <div class="input-group">
+        <label for="searchWord">Search Word:</label>
+        <input type="text" id="searchWord" required>
+    </div>
+    <button onclick="searchWord()">Search</button>
+    <div id="result"></div>
+
+    <script src="/js/strings.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>
