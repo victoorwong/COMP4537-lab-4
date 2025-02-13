@@ -1,19 +1,18 @@
-class Config {
+class Configuration {
     static API_URL = "https://walrus-app-2-u9tl4.ondigitalocean.app/api/definitions";
     static WORD_REGEX = /^[a-zA-Z\s]+$/;
 }
 
-// Validator class to handle input validation
 class WordValidator {
     static isValid(str) {
-        return Config.WORD_REGEX.test(str);
+        return Configuration.WORD_REGEX.test(str);
     }
 
     static isEmpty(str) {
         return !str.trim();
     }
 
-    static areFieldsValid(word, definition) {
+    static isFieldsValid(word, definition) {
         return !this.isEmpty(word) && 
                !this.isEmpty(definition) && 
                this.isValid(word) && 
@@ -21,9 +20,9 @@ class WordValidator {
     }
 }
 
-class DictionaryAPI {
+class Dictionary {
     static async submitDefinition(word, definition) {
-        const response = await fetch(Config.API_URL, {
+        const response = await fetch(Configuration.API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -61,12 +60,12 @@ class UIHandler {
     }
 
     showError(message) {
-        this.feedbackElement.className = "error";
+        this.feedbackElement.className = strings.ERROR;
         this.feedbackElement.textContent = message;
     }
 
     showSuccess(data) {
-        this.feedbackElement.className = "success";
+        this.feedbackElement.className = strings.SUCCESS;
         this.feedbackElement.textContent = 
             `Request #${data.request} - \n` +
             `Word: ${data.word}\n` +
@@ -84,7 +83,7 @@ class WordSubmission {
     async submit() {
         const { word, definition } = this.ui.getInputValues();
 
-        if (!WordValidator.areFieldsValid(word, definition)) {
+        if (!WordValidator.isFieldsValid(word, definition)) {
             this.ui.showError(
                 WordValidator.isEmpty(word) || WordValidator.isEmpty(definition)
                     ? strings.EMPTY_FIELDS_ERROR
@@ -94,7 +93,7 @@ class WordSubmission {
         }
 
         try {
-            const response = await DictionaryAPI.submitDefinition(word, definition);
+            const response = await Dictionary.submitDefinition(word, definition);
             this.ui.showSuccess(response);
             this.ui.clearInputs();
         } catch (error) {
