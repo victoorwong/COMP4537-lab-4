@@ -3,7 +3,7 @@ class Config {
     static WORD_REGEX = /^[a-zA-Z\s]+$/;
 }
 
-class Validator {
+class WordValidator {
     static isValid(str) {
         return Config.WORD_REGEX.test(str);
     }
@@ -14,11 +14,11 @@ class Validator {
 }
 
 class Dictionary {
-    static async fetchDefinition(word) {
+    static async getDefinition(word) {
         const response = await fetch(`${Config.API_URL}?word=${encodeURIComponent(word)}`);
         const data = await response.json();
 
-        if (!response.ok) {
+        if (!response.ok) { 
             throw new Error(data.error);
         }
 
@@ -61,7 +61,7 @@ class WordSearch {
         }
 
         try {
-            const definition = await Dictionary.fetchDefinition(word);
+            const definition = await Dictionary.getDefinition(word);
             this.ui.updateResult(`Definition: ${definition}`);
         } catch (error) {
             this.ui.updateResult(strings.SERVER_ERROR, true);
