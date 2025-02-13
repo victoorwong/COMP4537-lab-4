@@ -1,10 +1,8 @@
-// Configuration class to handle API and validation settings
 class Config {
     static API_URL = "https://walrus-app-2-u9tl4.ondigitalocean.app/api/definitions";
     static WORD_REGEX = /^[a-zA-Z\s]+$/;
 }
 
-// Validator class to handle input validation
 class WordValidator {
     static isValid(str) {
         return Config.WORD_REGEX.test(str);
@@ -15,7 +13,6 @@ class WordValidator {
     }
 }
 
-// API service class to handle API interactions
 class DictionaryAPI {
     static async fetchDefinition(word) {
         const response = await fetch(`${Config.API_URL}?word=${encodeURIComponent(word)}`);
@@ -28,8 +25,7 @@ class DictionaryAPI {
         return data.definition;
     }
 }
-
-// UI handler class to manage DOM interactions
+    
 class UIHandler {
     constructor() {
         this.searchInput = document.getElementById("searchWord");
@@ -46,7 +42,6 @@ class UIHandler {
     }
 }
 
-// Main WordSearch class to orchestrate the search process
 class WordSearch {
     constructor() {
         this.ui = new UIHandler();
@@ -74,6 +69,5 @@ class WordSearch {
     }
 }
 
-// Usage example:
 const wordSearch = new WordSearch();
 document.getElementById("searchButton").addEventListener("click", () => wordSearch.search());

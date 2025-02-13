@@ -1,4 +1,3 @@
-// Configuration class to handle API and validation settings
 class Config {
     static API_URL = "https://walrus-app-2-u9tl4.ondigitalocean.app/api/definitions";
     static WORD_REGEX = /^[a-zA-Z\s]+$/;
@@ -22,7 +21,6 @@ class WordValidator {
     }
 }
 
-// API service class to handle API interactions
 class DictionaryAPI {
     static async submitDefinition(word, definition) {
         const response = await fetch(Config.API_URL, {
@@ -43,7 +41,6 @@ class DictionaryAPI {
     }
 }
 
-// UI handler class to manage DOM interactions
 class UIHandler {
     constructor() {
         this.wordInput = document.getElementById("word");
@@ -78,7 +75,7 @@ class UIHandler {
     }
 }
 
-// Main WordSubmission class to orchestrate the submission process
+
 class WordSubmission {
     constructor() {
         this.ui = new UIHandler();
@@ -106,6 +103,5 @@ class WordSubmission {
     }
 }
 
-// Usage example:
 const wordSubmission = new WordSubmission();
 document.getElementById("submitButton").addEventListener("click", () => wordSubmission.submit());
